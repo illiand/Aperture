@@ -6,15 +6,24 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
 
+    public bool canMove;
+
     // Start is called before the first frame update
     void Start()
     {
       rb = GetComponent<Rigidbody>();
+
+      canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+      if(!canMove)
+      {
+        return;
+      }
+
       float speed = 2.0f;
       float[] movingSpeed = new float[]{0, 0, 0, 0};
 

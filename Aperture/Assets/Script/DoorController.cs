@@ -19,6 +19,8 @@ public class DoorController : MonoBehaviour
     private bool inOpen = false;
     private bool inClose = false;
 
+    private bool isLocked = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,8 @@ public class DoorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      if(isLocked) return;
+
       if(inOpen)
       {
         if(count < 180)
@@ -89,5 +93,13 @@ public class DoorController : MonoBehaviour
           inOpen = false;
           inClose = true;
         }
+    }
+
+    public void openDoor()
+    {
+      count = 0;
+      inOpen = true;
+      inClose = false;
+      isLocked = false;
     }
 }
