@@ -40,7 +40,7 @@ public class StairController : MonoBehaviour
         time.Add(0.0f);
         targetTime.Add(frequency);
       }
-      animating = true;
+      animating = false;
 
     }
 

@@ -19,7 +19,8 @@ public class DoorController : MonoBehaviour
     private bool inOpen = false;
     private bool inClose = false;
 
-    private bool isLocked = true;
+    public bool isLocked = true;
+    public Collider closedCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class DoorController : MonoBehaviour
           if(count == 180)
           {
             inOpen = false;
+            closedCollider.enabled = false;
           }
         }
       }
@@ -68,6 +70,7 @@ public class DoorController : MonoBehaviour
           if(count == 180)
           {
             inClose = false;
+            closedCollider.enabled = true;
           }
         }
       }

@@ -39,7 +39,7 @@ public class FirstDoorTrigger : MonoBehaviour
           if(inputField.GetComponent<TMP_InputField>().text == "TODO")
           {
             door.GetComponent<DoorController>().openDoor();
-            Destroy(this);
+            Destroy(gameObject);
           }
         }
       );

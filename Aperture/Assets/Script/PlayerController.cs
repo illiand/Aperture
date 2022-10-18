@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
       if (Input.GetKey(KeyCode.W))
       {
         movingSpeed[0] = speed;
+        //transform.Translate(0, 0, speed * Time.deltaTime);
       }
 
       if (Input.GetKey(KeyCode.S))
@@ -51,5 +52,17 @@ public class PlayerController : MonoBehaviour
       rb.velocity += transform.forward * movingSpeed[1];
       rb.velocity += transform.right * movingSpeed[2];
       rb.velocity += transform.right * movingSpeed[3];
+
+      if(rb.velocity.x != 0 || rb.velocity.y != 0 || rb.velocity.z != 0)
+      {
+        if(!GetComponent<AudioSource>().isPlaying)
+        {
+          GetComponent<AudioSource>().Play();
+        }
+      }
+      else
+      {
+        GetComponent<AudioSource>().Stop();
+      }
     }
 }
