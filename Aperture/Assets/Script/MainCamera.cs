@@ -19,6 +19,8 @@ public class MainCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+      if(!character.GetComponent<PlayerController>().canMove) return;
+
       float curDegree = transform.localEulerAngles.x;
 
       transform.position = character.transform.position;
