@@ -22,9 +22,13 @@ public class DoorController : MonoBehaviour
     public bool isLocked = true;
     public Collider closedCollider;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
+      audioSource = GetComponent<AudioSource>();
+
       startPos1 = up1.transform.position;
       startPos2 = down1.transform.position;
 
@@ -84,6 +88,11 @@ public class DoorController : MonoBehaviour
 
           inOpen = true;
           inClose = false;
+
+          if(!isLocked)
+          {
+            audioSource.Play();
+          }
         }
     }
 
@@ -95,6 +104,11 @@ public class DoorController : MonoBehaviour
 
           inOpen = false;
           inClose = true;
+
+          if(!isLocked)
+          {
+            audioSource.Play();
+          }
         }
     }
 
@@ -104,5 +118,7 @@ public class DoorController : MonoBehaviour
       inOpen = true;
       inClose = false;
       isLocked = false;
+
+      audioSource.Play();
     }
 }
