@@ -10,13 +10,14 @@ public class DoorController : MonoBehaviour
     public GameObject down1;
     public GameObject down2;
 
-    public Collider door;
-
     private Vector3 startPos1;
     private Vector3 endPos1;
     private Vector3 startPos2;
     private Vector3 endPos2;
     private int count = 999999;
+
+    private bool inOpen = false;
+    private bool inClose = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,18 +32,39 @@ public class DoorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(count < 180)
+      if(inOpen)
       {
-        up1.transform.position = Vector3.Lerp(startPos1, endPos1, count / 180.0f);
-        up2.transform.position = Vector3.Lerp(startPos1, endPos1, count / 180.0f);
-        down1.transform.position = Vector3.Lerp(startPos2, endPos2, count / 180.0f);
-        down2.transform.position = Vector3.Lerp(startPos2, endPos2, count / 180.0f);
-
-        count += 1;
-
-        if(count == 180)
+        if(count < 180)
         {
-          Destroy(door);
+          up1.transform.position = Vector3.Lerp(startPos1, endPos1, count / 180.0f);
+          up2.transform.position = Vector3.Lerp(startPos1, endPos1, count / 180.0f);
+          down1.transform.position = Vector3.Lerp(startPos2, endPos2, count / 180.0f);
+          down2.transform.position = Vector3.Lerp(startPos2, endPos2, count / 180.0f);
+
+          count += 1;
+
+          if(count == 180)
+          {
+            inOpen = false;
+          }
+        }
+      }
+
+      if(inClose)
+      {
+        if(count < 180)
+        {
+          up1.transform.position = Vector3.Lerp(endPos1, startPos1, count / 180.0f);
+          up2.transform.position = Vector3.Lerp(endPos1, startPos1, count / 180.0f);
+          down1.transform.position = Vector3.Lerp(endPos2, startPos2, count / 180.0f);
+          down2.transform.position = Vector3.Lerp(endPos2, startPos2, count / 180.0f);
+
+          count += 1;
+
+          if(count == 180)
+          {
+            inClose = false;
+          }
         }
       }
     }
@@ -52,6 +74,20 @@ public class DoorController : MonoBehaviour
         if(other.gameObject.name == "Player")
         {
           count = 0;
+
+          inOpen = true;
+          inClose = false;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.name == "Player")
+        {
+          count = 0;
+
+          inOpen = false;
+          inClose = true;
         }
     }
 }
