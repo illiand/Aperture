@@ -37,7 +37,7 @@ public class StairSymbolTrigger : MonoBehaviour
         canvas.gameObject.SetActive(false);
         player.GetComponent<PlayerController>().canMove = true;
 
-        if(inputField.GetComponent<TMP_InputField>().text == "TODO")
+        if(inputField.GetComponent<TMP_InputField>().text == "3987")
         {
           stair.GetComponent<StairController>().animating = true;
           stairCollider.gameObject.SetActive(true);
