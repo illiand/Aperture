@@ -22,7 +22,7 @@ public class StairController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      for(int i = 1; i <= 150; i += 1)
+      for(int i = 1; i <= 35; i += 1)
       {
         GameObject stairCopy = Object.Instantiate(stair);
 
@@ -49,7 +49,7 @@ public class StairController : MonoBehaviour
     {
       if (animating)
       {
-        for(int i = 0; i < 150; i += 1)
+        for(int i = 0; i < 35; i += 1)
         {
           if(sysTime < (i + 1) * frequency)
           {
