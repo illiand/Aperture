@@ -29,6 +29,6 @@ public class MainCamera : MonoBehaviour
 
       transform.localEulerAngles = new Vector3(x, y, 0);
       character.transform.localEulerAngles = new Vector3(0, y, 0);
-      transform.position = character.transform.position;
+      transform.position = new Vector3(character.transform.position.x, character.transform.position.y + 0.5f, character.transform.position.z);
     }
 }
