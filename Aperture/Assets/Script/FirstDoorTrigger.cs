@@ -36,7 +36,7 @@ public class FirstDoorTrigger : MonoBehaviour
           canvas.gameObject.SetActive(false);
           player.GetComponent<PlayerController>().canMove = true;
 
-          if(inputField.GetComponent<TMP_InputField>().text == "TODO")
+          if(inputField.GetComponent<TMP_InputField>().text == "3987")
           {
             door.GetComponent<DoorController>().openDoor();
             Destroy(gameObject);
