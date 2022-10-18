@@ -31,16 +31,16 @@ public class DoorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(count < 60)
+      if(count < 180)
       {
-        up1.transform.position = Vector3.Lerp(startPos1, endPos1, count / 60.0f);
-        up2.transform.position = Vector3.Lerp(startPos1, endPos1, count / 60.0f);
-        down1.transform.position = Vector3.Lerp(startPos2, endPos2, count / 60.0f);
-        down2.transform.position = Vector3.Lerp(startPos2, endPos2, count / 60.0f);
+        up1.transform.position = Vector3.Lerp(startPos1, endPos1, count / 180.0f);
+        up2.transform.position = Vector3.Lerp(startPos1, endPos1, count / 180.0f);
+        down1.transform.position = Vector3.Lerp(startPos2, endPos2, count / 180.0f);
+        down2.transform.position = Vector3.Lerp(startPos2, endPos2, count / 180.0f);
 
         count += 1;
 
-        if(count == 60)
+        if(count == 180)
         {
           Destroy(door);
         }
