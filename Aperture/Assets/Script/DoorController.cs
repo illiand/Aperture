@@ -40,11 +40,10 @@ public class DoorController : MonoBehaviour
 
         count += 1;
 
-        Debug.Log(up1.transform.position);
-        // if(count == 60)
-        // {
-        //   Destroy(door);
-        // }
+        if(count == 60)
+        {
+          Destroy(door);
+        }
       }
     }
 
