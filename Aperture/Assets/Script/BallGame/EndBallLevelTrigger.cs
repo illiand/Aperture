@@ -8,6 +8,7 @@ public class EndBallLevelTrigger : MonoBehaviour
 {
     public Canvas canvas;
     public GameObject ballController;
+    public GameObject player;
 
     public Button returnButton;
 
@@ -17,7 +18,8 @@ public class EndBallLevelTrigger : MonoBehaviour
       returnButton.onClick.AddListener(
         delegate
         {
-          Application.LoadLevel("SampleScene");
+          canvas.gameObject.SetActive(false);
+          player.GetComponent<PlayerController>().canMove = true;
         }
       );
     }
