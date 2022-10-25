@@ -43,6 +43,8 @@ public class DoorFarManager : MonoBehaviour
 
           pos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
           targetPos = new Vector3(player.transform.position.x + 12f, player.transform.position.y, player.transform.position.z);
+
+          GetComponents<AudioSource>()[0].Play();
         }
     }
 

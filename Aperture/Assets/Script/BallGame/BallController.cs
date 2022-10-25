@@ -43,7 +43,7 @@ public class BallController : MonoBehaviour
               //   ball.GetComponent<Rigidbody>().AddForce(new Vector3(0, factor, factor));
               // }
 
-              Vector3 force = new Vector3(0, factor * Mathf.Abs((mousePos.y - screenPos.y)), (mousePos.x - screenPos.x) / 10f * factor);
+              Vector3 force = new Vector3((mousePos.x - screenPos.x) / 10f * factor, factor * Mathf.Abs((mousePos.y - screenPos.y)), 0);
               ball.GetComponent<Rigidbody>().AddForce(force);
 
               Debug.Log((mousePos.y + " : " + screenPos.y));

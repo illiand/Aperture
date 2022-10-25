@@ -27,7 +27,7 @@ public class StairSymbolTrigger : MonoBehaviour
       delegate
       {
         canvas.gameObject.SetActive(false);
-        player.GetComponent<PlayerController>().canMove = true;
+        player.GetComponent<HomePlayerController>().canMove = true;
       }
     );
 
@@ -35,7 +35,7 @@ public class StairSymbolTrigger : MonoBehaviour
       delegate
       {
         canvas.gameObject.SetActive(false);
-        player.GetComponent<PlayerController>().canMove = true;
+        player.GetComponent<HomePlayerController>().canMove = true;
 
         if(inputField.GetComponent<TMP_InputField>().text == "3987")
         {
@@ -55,7 +55,7 @@ public class StairSymbolTrigger : MonoBehaviour
     {
       canvas.gameObject.SetActive(true);
 
-      player.GetComponent<PlayerController>().canMove = false;
+      player.GetComponent<HomePlayerController>().canMove = false;
     }
   }
 

@@ -19,7 +19,7 @@ public class EndBallLevelTrigger : MonoBehaviour
         delegate
         {
           canvas.gameObject.SetActive(false);
-          player.GetComponent<PlayerController>().canMove = true;
+          player.GetComponent<HomePlayerController>().canMove = true;
         }
       );
     }
@@ -36,6 +36,8 @@ public class EndBallLevelTrigger : MonoBehaviour
         {
           canvas.gameObject.SetActive(true);
           ballController.GetComponent<BallController>().canMove = false;
+
+          GetComponents<AudioSource>()[0].Play();
         }
     }
 }
