@@ -10,7 +10,7 @@ public class DoorFarManager : MonoBehaviour
     private Vector3 targetPos;
 
     private float curTime = 999;
-    private float time = 3;
+    private float time = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +21,17 @@ public class DoorFarManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      if(curTime == 999) return;
+
       if(curTime < time)
       {
         player.transform.position = Vector3.Lerp(pos, targetPos, curTime / time);
 
         curTime += Time.deltaTime;
+      }
+      else
+      {
+        Destroy(gameObject);
       }
     }
 
@@ -36,7 +42,7 @@ public class DoorFarManager : MonoBehaviour
           curTime = 0;
 
           pos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
-          targetPos = new Vector3(player.transform.position.x + 7f, player.transform.position.y, player.transform.position.z);
+          targetPos = new Vector3(player.transform.position.x + 12f, player.transform.position.y, player.transform.position.z);
         }
     }
 
