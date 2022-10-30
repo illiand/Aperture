@@ -4,51 +4,40 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public GameObject up1;
-    public GameObject up2;
+    public GameObject door;
 
-    public GameObject down1;
-    public GameObject down2;
-
-    private Vector3 startPos1;
-    private Vector3 endPos1;
-    private Vector3 startPos2;
-    private Vector3 endPos2;
+    private Vector3 startPos;
+    private Vector3 endPos;
+    private Vector3 startRotation;
+    private Vector3 endRotation;
     private int count = 999999;
 
-    private bool inOpen = false;
-    private bool inClose = false;
-
-    public bool isLocked = true;
+    public bool inOpen;
     public Collider closedCollider;
-
-    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-      audioSource = GetComponent<AudioSource>();
+      inOpen = false;
 
-      startPos1 = up1.transform.position;
-      startPos2 = down1.transform.position;
+      startPos = transform.position;
+      endPos = new Vector3(transform.position.x - 0.8624f, transform.position.y, transform.position.z - 0.93f);
+      startRotation = transform.eulerAngles;
+      endRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 90, transform.eulerAngles.z);;
 
-      endPos1 = new Vector3(up1.transform.position.x, up1.transform.position.y + 1.35f, up1.transform.position.z);
-      endPos2 = new Vector3(down1.transform.position.x, down1.transform.position.y - 1.35f, down1.transform.position.z);
+      Debug.Log(transform.localPosition);
+      Debug.Log(startPos);
     }
 
     // Update is called once per frame
     void Update()
     {
-      if(isLocked) return;
-
       if(inOpen)
       {
         if(count < 180)
         {
-          up1.transform.position = Vector3.Lerp(startPos1, endPos1, count / 180.0f);
-          up2.transform.position = Vector3.Lerp(startPos1, endPos1, count / 180.0f);
-          down1.transform.position = Vector3.Lerp(startPos2, endPos2, count / 180.0f);
-          down2.transform.position = Vector3.Lerp(startPos2, endPos2, count / 180.0f);
+          door.transform.position = Vector3.Lerp(startPos, endPos, count / 180f);
+          door.transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, count / 180f);
 
           count += 1;
 
@@ -60,65 +49,26 @@ public class DoorController : MonoBehaviour
         }
       }
 
-      if(inClose)
-      {
-        if(count < 180)
-        {
-          up1.transform.position = Vector3.Lerp(endPos1, startPos1, count / 180.0f);
-          up2.transform.position = Vector3.Lerp(endPos1, startPos1, count / 180.0f);
-          down1.transform.position = Vector3.Lerp(endPos2, startPos2, count / 180.0f);
-          down2.transform.position = Vector3.Lerp(endPos2, startPos2, count / 180.0f);
-
-          count += 1;
-
-          if(count == 180)
-          {
-            inClose = false;
-            closedCollider.enabled = true;
-          }
-        }
-      }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Player")
-        {
-          count = 0;
-
-          inOpen = true;
-          inClose = false;
-
-          if(!isLocked)
-          {
-            audioSource.Play();
-          }
-        }
+      if(other.gameObject.name == "Player")
+      {
+        openDoor();
+      }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.name == "Player")
-        {
-          count = 0;
 
-          inOpen = false;
-          inClose = true;
-
-          if(!isLocked)
-          {
-            audioSource.Play();
-          }
-        }
     }
 
     public void openDoor()
     {
       count = 0;
       inOpen = true;
-      inClose = false;
-      isLocked = false;
 
-      audioSource.Play();
+      GetComponent<AudioSource>().Play();
     }
 }

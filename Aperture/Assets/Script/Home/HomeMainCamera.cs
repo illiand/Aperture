@@ -5,7 +5,6 @@ using UnityEngine;
 public class HomeMainCamera : MonoBehaviour
 {
     public GameObject character;
-    private float cameraDistance = -3f;
 
     private float x = 0;
     private float y = 0;
