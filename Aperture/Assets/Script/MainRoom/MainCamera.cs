@@ -25,9 +25,9 @@ public class MainCamera : MonoBehaviour
 
       transform.position = character.transform.position;
       transform.localEulerAngles = character.transform.localEulerAngles;
-      x -= Input.GetAxis("Mouse Y");
+      x -= Input.GetAxis("Mouse Y") * 1.25f;
       x = Mathf.Clamp(x, -30, 40);
-      y += Input.GetAxis("Mouse X");
+      y += Input.GetAxis("Mouse X") * 1.25f;
 
       transform.localEulerAngles = new Vector3(x, y, 0);
       character.transform.localEulerAngles = new Vector3(0, y, 0);
